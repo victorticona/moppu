@@ -131,7 +131,7 @@ $url=url('/')."/";
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- User image -->
                         <li class="user-header bg-primary">
-                            <img src="./img/person1.png" class="img-circle elevation-2" alt="User Image">
+                            <img src="./img/person1.png" class="img-circle" alt="User Image">
 
                             <p>
                                 {{session('per_name')." ".session('per_lastname')}}
@@ -140,30 +140,24 @@ $url=url('/')."/";
                         <!-- Menu Body -->
                         <li class="user-body">
                             <div class="row">
-                                <div class="col-4 text-center">
-                                    <a href="#">Followers</a>
+                                <div class="col-6 text-center">
+                                    <a href="{{  url('miperfil') }}" class="btn btn-default btn-flat">Mi Perfil</a>
                                 </div>
-                                <div class="col-4 text-center">
-                                    <a href="#">Sales</a>
-                                </div>
-                                <div class="col-4 text-center">
-                                    <a href="#">Friends</a>
+
+                                <div class="col-6 text-center">
+                                    <a class="btn btn-default btn-flat float-right" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Cerrar session') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
                                 </div>
                             </div>
                             <!-- /.row -->
-                        </li>
-                        <!-- Menu Footer-->
-                        <li class="user-footer">
-                            <a href="{{  url('miperfil') }}" class="btn btn-default btn-flat">Mi Perfil</a>
-
-                            <a class="btn btn-default btn-flat float-right" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                {{ __('Cerrar session') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
                         </li>
                     </ul>
                 </li>

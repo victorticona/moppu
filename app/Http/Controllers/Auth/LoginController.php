@@ -54,8 +54,8 @@ class LoginController extends Controller
 
             $id = UserPerson::where('id', $idU)->get(['per_id', 'use_id']);
             $per = Persona::where('per_id', $id[0]['per_id'])->get();
-            session(['__use_id' => $id[0]['use_id']]);
-            session(['__per_id' => $per[0]['per_id']]);
+            session(['use_id' => $id[0]['use_id']]);
+            session(['per_id' => $per[0]['per_id']]);
             session(['per_name' => $per[0]['per_name']]);
             session(['per_lastname' => $per[0]['per_lastname']]);
 
@@ -76,6 +76,8 @@ class LoginController extends Controller
     {
         session()->forget('per_name');
         session()->forget('per_lastname');
+        session()->forget('use_id');
+        session()->forget('per_id');
 
 
         Auth::logout();

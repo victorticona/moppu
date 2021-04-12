@@ -38,6 +38,13 @@ class PersonaController extends Controller
         if ($r->isEmpty()) return false;
         else return true;
     }
+    public static function mobileAnotherExists($perId, $mobile)
+    {
+        $r = Persona::where('per_mobile', '=', $mobile)
+            ->where('per_id', '<>', $perId)->get();
+        if ($r->isEmpty()) return false;
+        else return true;
+    }
 
     public static function emailAnotherExists($perId, $email)
     {
