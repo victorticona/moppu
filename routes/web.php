@@ -26,7 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin', 'AdministradorController@index')->name('admin')->middleware('auth');;
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/usuario/perfil/{use_id?}', 'UsuarioController@Perfil');
 Route::resource('/usuario', 'UsuarioController');

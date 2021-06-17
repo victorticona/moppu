@@ -213,13 +213,13 @@
                 },
 
                 created(){
-                    axios.get('/perfil/indexlist')
+                    axios.get('./perfil/indexlist')
                     .then(
                         res=>{
                             this.datosDB=res.data
                         }
                     ),
-                    axios.get('/modulo/combobox')
+                    axios.get('./modulo/combobox')
                     .then(
                         res=>{
                             this.items=res.data
@@ -237,7 +237,7 @@
                       this.datoSelect=[];
                     },
                     datoPerfil(item){
-                      axios.get(`/perfil/getmodules/${item.pro_id}`)
+                      axios.get(`./perfil/getmodules/${item.pro_id}`)
                         .then(
                             res=>{
                                 this.datoSelect=res.data
@@ -251,11 +251,11 @@
                             $("#pro_name").css("border-color", "#DA3E47");
                             return;
                         }
-                        axios.post('/perfil',{params:{'dato':this.datoLocal,'select':this.datoSelect}}).then(res=>{
+                        axios.post('public/../perfil',{params:{'dato':this.datoLocal,'select':this.datoSelect}}).then(res=>{
                                 if (res.data.success==true) {
                                     toastr.success(res.data.msg);
                                     //this.usuario.push(users);
-                                    axios.get('/perfil/indexlist')
+                                    axios.get('./perfil/indexlist')
                                         .then(
                                             res=>{
                                                 this.datosDB=res.data
@@ -274,10 +274,10 @@
                             $("#pro_name").css("border-color", "#DA3E47");
                             return;
                         }
-                        axios.put(`/perfil/${this.pro_id}`,{params:{'dato':this.datoLocal,'select':this.datoSelect}}).then(res=>{
+                        axios.put(`public/../perfil/${this.pro_id}`,{params:{'dato':this.datoLocal,'select':this.datoSelect}}).then(res=>{
                                 if (res.data.success==true) {
                                     toastr.success(res.data.msg);
-                                    axios.get('/perfil/indexlist')
+                                    axios.get('./perfil/indexlist')
                                         .then(
                                             res=>{
                                                 this.datosDB=res.data
@@ -292,7 +292,7 @@
 
                     },
                     eliminarDatos(){
-                        axios.delete(`perfil/${this.pro_id}`)
+                        axios.delete(`public/../perfil/${this.pro_id}`)
                         .then(() => {
                             this.datosDB.splice(this.index, 1);
                             toastr.success('Dato eliminado correctamente');

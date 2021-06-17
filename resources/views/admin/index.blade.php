@@ -10,8 +10,9 @@ $url=url('/')."/";
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Moppu | delivery comunal</title>
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="{{URL::asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/fontawesome.css')}}">
     {{-- <link rel="stylesheet" href="{{asset('css/style.css')}}"> --}}
     {{-- <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-toggle.min.css')}}"> --}}
     <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
@@ -47,7 +48,7 @@ $url=url('/')."/";
                         <a href="#" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
-                                <img src="./img/person1.png" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                <img src="img/person1.png" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         Brad Diesel
@@ -314,6 +315,7 @@ $url=url('/')."/";
 -->
 
 
+    {{-- <script src="{{URL::asset('js/app.js')}}"></script> --}}
     <script src="js/app.js"></script>
 
 </body>

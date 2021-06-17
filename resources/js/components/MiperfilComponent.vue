@@ -1,4 +1,3 @@
-
 <template>
   <div
     class="container-fluid"
@@ -9,7 +8,7 @@
         <div class="card">
           <div class="card-body">
             <center class="mt-4">
-              <img src="/img/person1.png" class="img-circle" width="150" />
+              <img src="img/person1.png" class="img-circle" width="150" />
               <h6 class="card-subtitle pt-2">{{ this.session }}</h6>
             </center>
           </div>
@@ -478,9 +477,9 @@ export default {
       return this.datoLocal.acc_value.length > 7 ? true : false;
     },
     nameState2() {
-      if(this.datoLocal.acc_value === this.datoLocal.acc_value2){
+      if (this.datoLocal.acc_value === this.datoLocal.acc_value2) {
         return true;
-      }else{
+      } else {
         return false;
       }
     }
@@ -511,10 +510,10 @@ export default {
     };
   },
   created() {
-    axios.get("/miperfil").then(res => {
+    axios.get("./miperfil").then(res => {
       this.datosDB = res.data;
     }),
-      axios.get("/polidivi/combobox").then(res => {
+      axios.get("./polidivi/combobox").then(res => {
         this.options = res.data;
       });
   },
@@ -579,42 +578,48 @@ export default {
         $("#per_email").css("border-color", "#DA3E47");
         return;
       }
-      if (this.datoLocal.acc_value.trim() != "" && this.datoLocal.acc_value2.trim() === "") {
+      if (
+        this.datoLocal.acc_value.trim() != "" &&
+        this.datoLocal.acc_value2.trim() === ""
+      ) {
         toastr.warning("Confirme su contraseña");
         $("#input-live2").css("border-color", "#DA3E47");
         $("#input-live2").css(
-              "box-shadow",
-              "0 1px 1px rgba(236, 27, 27, 0.575) inset, 0 0 5px rgba(238, 24, 24, 0.63)"
-            );
+          "box-shadow",
+          "0 1px 1px rgba(236, 27, 27, 0.575) inset, 0 0 5px rgba(238, 24, 24, 0.63)"
+        );
         return;
       }
-      if(this.datoLocal.acc_value.trim() != this.datoLocal.acc_value2.trim()){
+      if (this.datoLocal.acc_value.trim() != this.datoLocal.acc_value2.trim()) {
         toastr.warning("La nueva contraseña no son iguales");
         $("#input-live").css("border-color", "#DA3E47");
         $("#input-live").css(
-              "box-shadow",
-              "0 1px 1px rgba(236, 27, 27, 0.575) inset, 0 0 5px rgba(238, 24, 24, 0.63)"
-            );
+          "box-shadow",
+          "0 1px 1px rgba(236, 27, 27, 0.575) inset, 0 0 5px rgba(238, 24, 24, 0.63)"
+        );
         $("#input-live2").css("border-color", "#DA3E47");
         $("#input-live2").css(
-              "box-shadow",
-              "0 1px 1px rgba(236, 27, 27, 0.575) inset, 0 0 5px rgba(238, 24, 24, 0.63)"
-            );
+          "box-shadow",
+          "0 1px 1px rgba(236, 27, 27, 0.575) inset, 0 0 5px rgba(238, 24, 24, 0.63)"
+        );
         return;
       }
       if (this.datoLocal.acc_value_ant.trim() === "") {
-        toastr.warning("llena todos los campos que corresponda");
+        toastr.warning("Introduzca su contraseña para editar");
         $("#acc_value_ant").css("border-color", "#DA3E47");
         return;
       }
 
       axios
-        .put(`/miperfil/${this.datoLocal.use_username}`, this.datoLocal)
+        .put(
+          `public/../miperfil/${this.datoLocal.use_username}`,
+          this.datoLocal
+        )
         .then(res => {
           if (res.data.success == true) {
             toastr.success(res.data.msg);
-            this.btnEditar=false;
-            axios.get("/miperfil").then(res => {
+            this.btnEditar = false;
+            axios.get("./miperfil").then(res => {
               this.datosDB = res.data;
             });
           } else {
@@ -648,9 +653,14 @@ export default {
       this.btnEditar = true;
       //$('#modalForm').modal('show')
     },
-    Cancelar(){
-      this.btnEditar=false;
+    Cancelar() {
+      this.btnEditar = false;
     }
   }
 };
 </script>
+
+
+estoy buscando a Luis, sabe donde vive??
+mire el me debe dinero, ya hace 1 año me lo tenia que dar
+pero nada, se perdio totalmente, no me responde llamadas no me responde mesanjes
