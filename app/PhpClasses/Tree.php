@@ -293,13 +293,13 @@ class Tree
             }
             DB::commit();
             $rest = [
-                'success' => "true",
+                'success' => true,
                 'msg' => 'Datos registrados correctamente',
                 'mod_id' => $modId
             ];
         } catch (\Exception $e) {
             $rest = [
-                'success' => "false",
+                'success' => false,
                 'msg' => 'Error al intentar registrar' . $e
             ];
         }
@@ -465,14 +465,17 @@ class Tree
         if ($node[$this->getFatherField()] == $data[$this->getFatherField()]) {
             DB::table($this->getTable())->where($this->getPk(), '=', $node[$this->getPk()])->update($data);
             $rest = [
-                'success' => "true",
+                'success' => true,
                 'msg' => 'Registro actualizado sin cambio de rama'
             ];
         } else {
             $first = $this->getFirstNodeTree();
             $first = get_object_vars($first);
             if ($first[$this->getPk()] == $data[$this->getPk()]) {
-                $rest = ['success' => "false", 'msg' => 'NO es posible mover el nodo padre de todo el arbol '];
+                $rest = [
+                    'success' => false,
+                    'msg' => 'NO es posible mover el nodo padre de todo el arbol'
+                ];
             } else {
                 // actualizamos los datos enviados, menos los campos del arbol
                 $aux = $data[$this->getFatherField()];

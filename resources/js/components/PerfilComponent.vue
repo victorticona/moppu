@@ -243,6 +243,7 @@
                                 this.datoSelect=res.data
                             }
                         )
+                      console.log(this.datoSelect)
                     },
 
                     crear(){

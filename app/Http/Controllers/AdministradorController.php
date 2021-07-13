@@ -52,6 +52,7 @@ class AdministradorController extends Controller
         }
         $extra = $menu;
         $c = sizeof($menu);
+
         for ($i = 0; $i < sizeof($extra); $i++) {
             for ($j = 0; $j < sizeof($da['rows']); $j++) {
                 if ($extra[$i]['mod_father'] == $da['rows'][$j]['mod_id']) {
@@ -125,6 +126,7 @@ class AdministradorController extends Controller
             }
         }
         $extra = $menu;
+
         $c = sizeof($menu);
         for ($i = 0; $i < sizeof($extra); $i++) {
             for ($j = 0; $j < sizeof($da['rows']); $j++) {

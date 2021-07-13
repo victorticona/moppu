@@ -47,6 +47,9 @@ Vue.component('perfil-vico', require('./components/PerfilComponent.vue').default
 //componente para crud de mi perfil
 Vue.component('miperfil-vico', require('./components/MiperfilComponent.vue').default);
 
+//componente para crud de mi Modulo
+Vue.component('modulo-vico', require('./components/ModuloComponent.vue').default);
+
 
 
 const app = new Vue({
