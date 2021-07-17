@@ -659,8 +659,3 @@ export default {
   }
 };
 </script>
-
-
-estoy buscando a Luis, sabe donde vive??
-mire el me debe dinero, ya hace 1 año me lo tenia que dar
-pero nada, se perdio totalmente, no me responde llamadas no me responde mesanjes

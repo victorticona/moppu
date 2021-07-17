@@ -40,6 +40,7 @@ Route::get('/perfil/combobox/{pro_id?}', 'PerfilController@comboBox');
 Route::resource('/perfil', 'PerfilController');
 
 Route::get('/modulo/combobox/{mod_id?}', 'ModuloController@comboBox');
+Route::get('/modulo/getmodulos/{mod_id?}', 'ModuloController@getModulos');
 Route::resource('/modulo', 'ModuloController');
 
 Route::resource('/miperfil', 'MiperfilController');

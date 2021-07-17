@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 //$url = substr(url()->current(),0, 22);
-$url=url('/')."/";
+$url = url('/') . '/';
 
 ?>
 <html>
@@ -135,7 +135,7 @@ $url=url('/')."/";
                             <img src="./img/person1.png" class="img-circle" alt="User Image">
 
                             <p>
-                                <?php echo e(session('per_name')." ".session('per_lastname')); ?>
+                                <?php echo e(session('per_name') . ' ' . session('per_lastname')); ?>
 
                             </p>
                         </li>
@@ -180,80 +180,128 @@ $url=url('/')."/";
 
             <!-- Sidebar TODO DEL MENU-->
             <div class="sidebar">
+                <div class="user-panel  ">
+                    <div class="info">
+                    </div>
+                </div>
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
+                        <?php
+                        $sw=0;
+                        ?>
                         <?php for($i = 0; $i < sizeof($da)-1; $i++): ?> <?php if($da[$i]['mod_state']==1): ?>
-                            <?php if(strlen($da[$i]['mod_tree'])==strlen($da[$i+1]['mod_tree'])): ?> <li class="nav-item">
-                            <a href="<?php echo e($url.$da[$i]['mod_url']); ?>" class="nav-link">
-                                <?php if($da[$i]['mod_icono']!=null): ?>
-                                <i class="nav-icon fa fa-3x">&#x<?php echo e($da[$i]['mod_icono']); ?></i>
-                                <?php endif; ?>
+                            <?php if(strlen($da[$i]['mod_tree'])==strlen($da[$i+1]['mod_tree'])): ?>
+                            <?php if($da[0]['nombre']==$da[$i]['mod_name']): ?> <li class="nav-item menu-open">
+                            <a href="<?php echo e($url.$da[$i]['mod_url']); ?>" class="nav-link active">
 
-                                <p>
-                                    <?php echo e($da[$i]['mod_name']); ?>
+                                <?php else: ?>
+                                <li class="nav-item">
+                                    <a href="<?php echo e($url.$da[$i]['mod_url']); ?>" class="nav-link">
+                                        <?php endif; ?>
+                                        <?php if($da[$i]['mod_icono']!=null): ?>
+                                        <i class="nav-icon fa fa-3x">
+                                            &#x<?php echo e($da[$i]['mod_icono']); ?>
 
-                                </p>
-                            </a>
-                            </li>
-                            <?php else: ?>
-                            <?php if(strlen($da[$i]['mod_tree'])<strlen($da[$i+1]['mod_tree'])): ?> <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <?php if($da[$i]['mod_icono']!=null): ?>
-                                    <i class="nav-icon fa fa-3x">&#x<?php echo e($da[$i]['mod_icono']); ?></i>
-                                    <?php endif; ?>
-                                    <p>
-                                        <?php echo e($da[$i]['mod_name']); ?>
+                                        </i>
+                                        <?php endif; ?>
+                                        <p><?php echo e($da[$i]['mod_name']); ?></p>
+                                    </a>
+                                </li>
+                                <?php else: ?>
+                                <?php if(strlen($da[$i]['mod_tree'])<strlen($da[$i+1]['mod_tree'])): ?>
+                                    <?php if($da[0]['padre']==$da[$i]['mod_id']): ?> <li class="nav-item menu-open">
+                                    <a href="#" class="nav-link active">
 
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <?php else: ?>
-                                    <?php if(strlen($da[$i]['mod_tree'])>strlen($da[$i+1]['mod_tree'])): ?>
-                                    <li class="nav-item">
-                                        <a href="<?php echo e($url.$da[$i]['mod_url']); ?>" class="nav-link">
-                                            <?php if($da[$i]['mod_icono']!=null): ?>
-                                            <i class="nav-icon fa fa-3x">&#x<?php echo e($da[$i]['mod_icono']); ?></i>
-                                            <?php endif; ?>
-                                            <p>
-                                                <?php echo e($da[$i]['mod_name']); ?>
-
-                                            </p>
-                                        </a>
-                                    </li>
-                                    <?php for($j = 0; $j <intval((strlen($da[$i]['mod_tree']))/4) ; $j++): ?> </ul> </li>
-                                        <?php endfor; ?> <?php endif; ?> <?php endif; ?> <?php endif; ?> <?php endif; ?> <?php endfor; ?> <?php if(strlen($da[sizeof($da)-1
-                                        ]['mod_tree'])<=strlen($da[ sizeof($da)-2 ]['mod_tree'])): ?> <li class="nav-item">
-                                        <a href="<?php echo e($url.$da[sizeof($da)-1]['mod_url']); ?>" class="nav-link">
-                                            <?php if($da[sizeof($da)-1]['mod_icono']!=null): ?>
-                                            <i class="nav-icon fa fa-3x">&#x<?php echo e($da[sizeof($da)-1]['mod_icono']); ?></i>
-                                            <?php endif; ?>
-                                            <p>
-                                                <?php echo e($da[sizeof($da)-1]['mod_name']); ?>
-
-                                            </p>
-                                        </a>
-                                        </li>
                                         <?php else: ?>
-
                                         <li class="nav-item">
-                                            <a href="<?php echo e($url.$da[sizeof($da)-1]['mod_url']); ?>" class="nav-link">
-                                                <?php if($da[sizeof($da)-1]['mod_icono']!=null): ?>
-                                                <i class="nav-icon fa fa-3x">&#x<?php echo e($da[sizeof($da)-1]['mod_icono']); ?></i>
+                                            <a href="#" class="nav-link">
+                                                <?php endif; ?>
+
+                                                <?php if($da[$i]['mod_icono']!=null): ?>
+                                                <i class="nav-icon fa fa-3x">
+                                                    &#x<?php echo e($da[$i]['mod_icono']); ?>
+
+                                                </i>
                                                 <?php endif; ?>
                                                 <p>
-                                                    <?php echo e($da[sizeof($da)-1]['mod_name']); ?>
+                                                    <?php echo e($da[$i]['mod_name']); ?>
 
+                                                    <i class="right fas fa-angle-left"></i>
                                                 </p>
                                             </a>
-                                        </li>
-                                        <?php for($j = 0; $j <intval((strlen($da[sizeof($da)-1]['mod_tree']))/4) ; $j++): ?>
-                                            </ul> </li> <?php endfor; ?> <?php endif; ?> <br>
+                                            <ul class="nav nav-treeview">
+                                                <?php else: ?>
+                                                <?php if(strlen($da[$i]['mod_tree'])>strlen($da[$i+1]['mod_tree'])): ?>
+                                                <?php if($da[0]['nombre']==$da[$i]['mod_name']): ?>
+                                                <li class="nav-item menu-open">
+                                                    <a href="<?php echo e($url.$da[$i]['mod_url']); ?>" class="nav-link active">
 
-                                </ul>
+                                                        <?php else: ?>
+                                                <li class="nav-item">
+                                                    <a href="<?php echo e($url.$da[$i]['mod_url']); ?>" class="nav-link">
+                                                        <?php endif; ?>
+
+                                                        <?php if($da[$i]['mod_icono']!=null): ?>
+                                                        <i class="nav-icon fa fa-3x">
+                                                            &#x<?php echo e($da[$i]['mod_icono']); ?>
+
+                                                        </i>
+                                                        <?php endif; ?>
+                                                        <p>
+                                                            <?php echo e($da[$i]['mod_name']); ?>
+
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <?php for($j = 0; $j <intval((strlen($da[$i]['mod_tree']))/4) ; $j++): ?> </ul>
+                                                    </li> <?php endfor; ?> <?php endif; ?> <?php endif; ?> <?php endif; ?> <?php endif; ?> <?php endfor; ?>
+                                                    <?php if(strlen($da[sizeof($da)-1]['mod_tree'])<=strlen($da[sizeof($da)-2]['mod_tree'])): ?>
+                                                    <?php if($da[0]['nombre']==$da[sizeof($da)-1]['mod_name']): ?> <li
+                                                    class="nav-item menu-open">
+                                                    <a href="<?php echo e($url.$da[sizeof($da)-1]['mod_url']); ?>"
+                                                        class="nav-link active">
+                                                        <?php else: ?>
+                                                        <li class="nav-item">
+                                                            <a href="<?php echo e($url.$da[sizeof($da)-1]['mod_url']); ?>"
+                                                                class="nav-link">
+                                                                <?php endif; ?>
+
+                                                                <?php if($da[sizeof($da)-1]['mod_icono']!=null): ?>
+                                                                <i class="nav-icon fa fa-3x">
+                                                                    &#x<?php echo e($da[sizeof($da)-1]['mod_icono']); ?>
+
+                                                                </i>
+                                                                <?php endif; ?>
+                                                                <p>
+                                                                    <?php echo e($da[sizeof($da)-1]['mod_name']); ?>
+
+                                                                </p>
+                                                            </a>
+                                                        </li>
+                                                        <?php else: ?>
+                                                        <li class="nav-item">
+                                                            <a href="<?php echo e($url.$da[sizeof($da)-1]['mod_url']); ?>"
+                                                                class="nav-link">
+                                                                <?php if($da[sizeof($da)-1]['mod_icono']!=null): ?>
+                                                                <i class="nav-icon fa fa-3x">
+                                                                    &#x<?php echo e($da[sizeof($da)-1]['mod_icono']); ?>
+
+                                                                </i>
+                                                                <?php endif; ?>
+                                                                <p>
+                                                                    <?php echo e($da[sizeof($da)-1]['mod_name']); ?>
+
+                                                                </p>
+                                                            </a>
+                                                        </li>
+                                                        <?php for($j = 0; $j
+                                                        <intval((strlen($da[sizeof($da)-1]['mod_tree']))/4) ; $j++): ?>
+                                                            </ul> </li> <?php endfor; ?> <?php endif; ?> <br>
+                                            </ul>
                 </nav>
+
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
