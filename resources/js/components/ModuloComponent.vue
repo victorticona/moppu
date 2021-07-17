@@ -1369,7 +1369,7 @@ export default {
       );
     },
     cierra() {
-      $("#modalForm").modal("hide");
+
       $("#modalEliminar").modal("hide");
       this.datoSelect = [];
     },
@@ -1429,7 +1429,7 @@ export default {
             axios.get("./modulo").then(res => {
               this.items = res.data;
             });
-            $("#modalForm").modal("hide");
+
           } else {
             toastr.error(res.data.msg);
           }

@@ -178,84 +178,119 @@ $url = url('/') . '/';
 
             <!-- Sidebar TODO DEL MENU-->
             <div class="sidebar">
+                <div class="user-panel  ">
+                    <div class="info">
+                    </div>
+                </div>
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        @for ($i = 0; $i < sizeof($da) - 1; $i++) @if ($da[$i]['mod_state'] == 1) @if (strlen($da[$i]['mod_tree']) == strlen($da[$i + 1]['mod_tree']))
-                                <li class="nav-item">
-                                <a href="{{ $url . $da[$i]['mod_url'] }}" class="nav-link">
-                                @if ($da[$i]['mod_icono'] != null)
-                                    <i class="nav-icon fa
-                                    fa-3x">&#x{{ $da[$i]['mod_icono'] }}</i> @endif
+                        @php
+                        $sw=0;
+                        @endphp
+                        @for ($i = 0; $i < sizeof($da)-1; $i++) @if ($da[$i]['mod_state']==1)
+                            @if(strlen($da[$i]['mod_tree'])==strlen($da[$i+1]['mod_tree']))
+                            @if($da[0]['nombre']==$da[$i]['mod_name']) <li class="nav-item menu-open">
+                            <a href="{{$url.$da[$i]['mod_url']}}" class="nav-link active">
 
-                                    <p>
-                                        {{ $da[$i]['mod_name'] }}
-                                    </p>
-                                    </a>
-                                    </li>
                                 @else
-                                    @if (strlen($da[$i]['mod_tree']) < strlen($da[$i + 1]['mod_tree']))
+                                <li class="nav-item">
+                                    <a href="{{$url.$da[$i]['mod_url']}}" class="nav-link">
+                                        @endif
+                                        @if($da[$i]['mod_icono']!=null)
+                                        <i class="nav-icon fa fa-3x">
+                                            &#x{{$da[$i]['mod_icono']}}
+                                        </i>
+                                        @endif
+                                        <p>{{$da[$i]['mod_name']}}</p>
+                                    </a>
+                                </li>
+                                @else
+                                @if (strlen($da[$i]['mod_tree'])<strlen($da[$i+1]['mod_tree']))
+                                    @if($da[0]['padre']==$da[$i]['mod_id']) <li class="nav-item menu-open">
+                                    <a href="#" class="nav-link active">
+
+                                        @else
                                         <li class="nav-item">
                                             <a href="#" class="nav-link">
-                                                @if ($da[$i]['mod_icono'] != null)
-                                                    <i class="nav-icon fa fa-3x">&#x{{ $da[$i]['mod_icono'] }}</i>
+                                                @endif
+
+                                                @if ($da[$i]['mod_icono']!=null)
+                                                <i class="nav-icon fa fa-3x">
+                                                    &#x{{$da[$i]['mod_icono']}}
+                                                </i>
                                                 @endif
                                                 <p>
-                                                    {{ $da[$i]['mod_name'] }}
+                                                    {{$da[$i]['mod_name']}}
                                                     <i class="right fas fa-angle-left"></i>
                                                 </p>
                                             </a>
                                             <ul class="nav nav-treeview">
-                                            @else
-                                                @if (strlen($da[$i]['mod_tree']) > strlen($da[$i + 1]['mod_tree']))
-                                                    <li class="nav-item">
-                                                        <a href="{{ $url . $da[$i]['mod_url'] }}" class="nav-link">
-                                                            @if ($da[$i]['mod_icono'] != null)
-                                                                <i
-                                                                    class="nav-icon fa fa-3x">&#x{{ $da[$i]['mod_icono'] }}</i>
-                                                            @endif
-                                                            <p>
-                                                                {{ $da[$i]['mod_name'] }}
-                                                            </p>
-                                                        </a>
-                                                    </li>
-                                                    @for ($j = 0; $j <intval((strlen($da[$i]['mod_tree'])) /4) ; $j++)
-                                                        </ul>
-                                        </li>
-                                        @endfor @endif @endif @endif @endif @endfor @if (strlen($da[sizeof($da) - 1]['mod_tree']) <= strlen($da[sizeof($da) - 2]['mod_tree']))
-                                            <li class="nav-item">
-                                                <a href="{{ $url . $da[sizeof($da) - 1]['mod_url'] }}" class="nav-link">
-                                                    @if ($da[sizeof($da) - 1]['mod_icono'] != null)
-                                                        <i
-                                                            class="nav-icon fa fa-3x">&#x{{ $da[sizeof($da) - 1]['mod_icono'] }}</i>
-                                                    @endif
-                                                    <p>
-                                                        {{ $da[sizeof($da) - 1]['mod_name'] }}
-                                                    </p>
-                                                </a>
-                                            </li>
-                                        @else
+                                                @else
+                                                @if (strlen($da[$i]['mod_tree'])>strlen($da[$i+1]['mod_tree']))
+                                                @if($da[0]['nombre']==$da[$i]['mod_name'])
+                                                <li class="nav-item menu-open">
+                                                    <a href="{{$url.$da[$i]['mod_url']}}" class="nav-link active">
 
-                                            <li class="nav-item">
-                                                <a href="{{ $url . $da[sizeof($da) - 1]['mod_url'] }}" class="nav-link">
-                                                    @if ($da[sizeof($da) - 1]['mod_icono'] != null)
-                                                        <i
-                                                            class="nav-icon fa fa-3x">&#x{{ $da[sizeof($da) - 1]['mod_icono'] }}</i>
-                                                    @endif
-                                                    <p>
-                                                        {{ $da[sizeof($da) - 1]['mod_name'] }}
-                                                    </p>
-                                                </a>
-                                            </li>
-                                            @for ($j = 0; $j <intval((strlen($da[sizeof($da)-1]['mod_tree'])) /4) ;
-                                                $j++) </ul>
+                                                        @else
+                                                <li class="nav-item">
+                                                    <a href="{{$url.$da[$i]['mod_url']}}" class="nav-link">
+                                                        @endif
+
+                                                        @if ($da[$i]['mod_icono']!=null)
+                                                        <i class="nav-icon fa fa-3x">
+                                                            &#x{{$da[$i]['mod_icono']}}
+                                                        </i>
+                                                        @endif
+                                                        <p>
+                                                            {{$da[$i]['mod_name']}}
+                                                        </p>
+                                                    </a>
                                                 </li>
-                                        @endfor
-                                    @endif <br>
+                                                @for ($j = 0; $j <intval((strlen($da[$i]['mod_tree']))/4) ; $j++) </ul>
+                                                    </li> @endfor @endif @endif @endif @endif @endfor
+                                                    @if(strlen($da[sizeof($da)-1]['mod_tree'])<=strlen($da[sizeof($da)-2]['mod_tree']))
+                                                    @if ($da[0]['nombre']==$da[sizeof($da)-1]['mod_name']) <li
+                                                    class="nav-item menu-open">
+                                                    <a href="{{$url.$da[sizeof($da)-1]['mod_url']}}"
+                                                        class="nav-link active">
+                                                        @else
+                                                        <li class="nav-item">
+                                                            <a href="{{$url.$da[sizeof($da)-1]['mod_url']}}"
+                                                                class="nav-link">
+                                                                @endif
 
-                    </ul>
+                                                                @if ($da[sizeof($da)-1]['mod_icono']!=null)
+                                                                <i class="nav-icon fa fa-3x">
+                                                                    &#x{{$da[sizeof($da)-1]['mod_icono']}}
+                                                                </i>
+                                                                @endif
+                                                                <p>
+                                                                    {{$da[sizeof($da)-1]['mod_name']}}
+                                                                </p>
+                                                            </a>
+                                                        </li>
+                                                        @else
+                                                        <li class="nav-item">
+                                                            <a href="{{$url.$da[sizeof($da)-1]['mod_url']}}"
+                                                                class="nav-link">
+                                                                @if ($da[sizeof($da)-1]['mod_icono']!=null)
+                                                                <i class="nav-icon fa fa-3x">
+                                                                    &#x{{$da[sizeof($da)-1]['mod_icono']}}
+                                                                </i>
+                                                                @endif
+                                                                <p>
+                                                                    {{$da[sizeof($da)-1]['mod_name']}}
+                                                                </p>
+                                                            </a>
+                                                        </li>
+                                                        @for ($j = 0; $j
+                                                        <intval((strlen($da[sizeof($da)-1]['mod_tree']))/4) ; $j++)
+                                                            </ul> </li> @endfor @endif <br>
+                                            </ul>
                 </nav>
+
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->

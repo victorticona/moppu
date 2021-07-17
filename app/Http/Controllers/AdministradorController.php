@@ -95,11 +95,10 @@ class AdministradorController extends Controller
 
         $da = $people;
 
-
-
         $url = substr(url()->current(), strlen(url('/') . "/"), strlen(url()->current()));
         $nom = Modulo::where('mod_url', '=', $url)->get()->toArray();
         $da[0]['nombre'] = $nom[0]['mod_name'];
+        $da[0]['padre'] = $nom[0]['mod_father'];
 
         //dd($da);
         return view('admin.index', compact('da'));
@@ -174,7 +173,7 @@ class AdministradorController extends Controller
         $nom = Modulo::where('mod_url', '=', $url)->get()->toArray();
         $da[0]['nombre'] = $nom[0]['mod_name'];
         //dd($da);
-
+        $da[0]['padre'] = $nom[0]['mod_father'];
 
         return $da;
     }
