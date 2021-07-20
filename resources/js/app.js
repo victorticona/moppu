@@ -50,6 +50,8 @@ Vue.component('miperfil-vico', require('./components/MiperfilComponent.vue').def
 //componente para crud de mi Modulo
 Vue.component('modulo-vico', require('./components/ModuloComponent.vue').default);
 
+//componente para crud de Direcccion
+Vue.component('direccion-vico', require('./components/DireccionComponent.vue').default);
 
 
 const app = new Vue({

@@ -5,6 +5,7 @@ namespace App\PhpClasses;
 
 use Illuminate\Support\Facades\DB;
 use App\SqlClasses\TreeSql;
+use App\PoliticaDivision;
 
 class Tree
 {
@@ -247,6 +248,75 @@ class Tree
             $str .= ']';
         }
 
+        return $str;
+    }
+
+    public function getAllForComboDir()
+    {
+        $d = $this->getAll();
+
+        if ($d['total'] == 0) {
+            $d['rows'] = array();
+            $str = "[";
+        } else {
+            $str = '';
+        }
+        $data = $d['rows'];
+
+        $val = array();
+        $i = 0;
+        $prev = array($this->getLevel() => '');
+        $tope = count($data);
+
+
+        foreach ($data as $v) {
+
+            $desig = PoliticaDivision::where("pdv_id", "=", $v['dir_designacion'])->get()->toArray();
+            $desig = $desig[0];
+            if ($i == 0) {
+                $str .= '[';
+                //$str .= '{ "id": 0, "name": "Vicok","locked": true}';
+                $prev = $v;
+            }
+            if ($prev[$this->getLevel()] == $v[$this->getLevel()] && $prev[$this->getLevel()] != 0) {
+                $str .= ',';
+            } elseif ($prev[$this->getLevel()] > $v[$this->getLevel()]) {
+                $close = $prev[$this->getLevel()] - $v[$this->getLevel()];
+                if ($close == 1) $str .= ']},';
+                elseif ($close == 0) {
+                    for ($j = 0; $j < $prev[$this->getLevel()]; $j++) {
+                        $str .= ']}';
+                    }
+                    if ($i < $tope) $str .= ',';
+                } elseif ($close > 1) {
+                    for ($j = 0; $j < $close; $j++) {
+                        $str .= ']}';
+                    }
+                    if ($i < $tope) $str .= ',';
+                }
+            }
+            if ($v[$this->HasChild] == 1) {
+                $str .= '{"id": "' . $v[$this->Pk] . '", '
+                    . '"name": "' . $v[$this->FieldName] . '", '
+                    . '"designacion": " ' . $desig['pdv_name'] . ' ", '
+                    . '"children":[ ';
+                $prev = $v;
+            } else {
+                $str .= '{"id": "' . $v[$this->Pk] . '", '
+                    . '"designacion": " ' . $desig['pdv_name'] . ' ", '
+                    . '"name": "' . $v[$this->FieldName] . '"}';
+                $prev = $v;
+            }
+            $i++;
+        }
+        if ($prev[$this->getLevel()] == 0) $str .= ']';
+        else {
+            for ($j = 0; $j < $prev[$this->getLevel()]; $j++) {
+                $str .= ']}';
+            }
+            $str .= ']';
+        }
+        //dd($str);
         return $str;
     }
 

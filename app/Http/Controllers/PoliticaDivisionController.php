@@ -54,7 +54,7 @@ class PoliticaDivisionController extends Controller
     {
         //
 
-        $unidad = $request->only(['pdv_name', 'pdv_locacion', 'pdv_estado']);
+        $unidad = $request->only(['pdv_name', 'pdv_estado']);
 
         DB::beginTransaction();
         try {

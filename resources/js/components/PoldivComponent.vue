@@ -3,7 +3,7 @@
     <div class="container">
 
         <button class="btn btn-success btn-md mb-3 mt-3" @click="abrirModalNuevo()" title="modificar">
-            <i class="fas fa-user-plus"> Nuevo Ciudad</i>
+            <i class="fas fa-user-plus"> Nuevo Politica Division</i>
         </button>
 
 
@@ -11,7 +11,6 @@
             <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>Locacion</th>
                     <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
@@ -19,16 +18,13 @@
             <tbody>
                 <tr v-if="datosDB.length==0">
                     <td colspan="4" class="text-center text-danger">
-                        <label> No existe registro de Usuarios</label>
+                        <label> No existe registros</label>
                     </td>
                 </tr>
                 <tr v-for="(item, index) in datosDB" :key="index">
 
                     <td>
                         {{item.pdv_name}}
-                    </td>
-                    <td>
-                        {{item.pdv_locacion}}
                     </td>
                     <td v-if="item.pdv_estado==1">
                         {{'Activado'}}
@@ -46,12 +42,6 @@
                         <button type="button" title="Eliminar" class="btn btn-danger btn-sm"
                             @click="abrirModalEliminar(item,index)">
                             <i class="fas fa-trash-alt"></i>
-                        </button>
-
-
-
-                        <button class="btn btn-info btn-sm" title="Detalles">
-                            <i class="fas fa-info-circle"></i>
                         </button>
 
                     </td>
@@ -76,13 +66,8 @@
                     <form>
                         <div class="modal-body">
                             <div class="form-group">
-                                <input placeholder="Nombre de la Ciudad" type="text" class="form-control"
+                                <input placeholder="Nombre" type="text" class="form-control"
                                     v-model="datoLocal.pdv_name" @keypress="validacion" id="pdv_name">
-                            </div>
-
-                            <div class="form-group">
-                                <input placeholder="Locacion" type="text" class="form-control"
-                                    v-model="datoLocal.pdv_locacion" @keypress="validacion" id="pdv_locacion">
                             </div>
                             <div class="form-group">
                                 <center>
@@ -121,7 +106,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Ciudad</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Politica division</h5>
                         <button type="button" class="close" data-dismiss="modal" @click.prevent="cierra()"
                             aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -152,7 +137,6 @@
                     datosDB:[],
                     datoLocal:{
                         pdv_name:'',
-                        pdv_locacion:'',
                         pdv_estado:'',
                         pdv_id:''
                     },
@@ -237,9 +221,8 @@
 
                 },
                 abrirModalEditar(item){
-                    this.titulo='Editar Ciudad'
+                    this.titulo='Editar Politica Division'
                     this.datoLocal.pdv_name=item.pdv_name
-                    this.datoLocal.pdv_locacion=item.pdv_locacion
                     this.datoLocal.pdv_estado=item.pdv_estado
                     this.datoLocal.pdv_id=item.pdv_id
                     this.btnCrear=false
@@ -247,9 +230,8 @@
                     $('#modalForm').modal('show')
                 },
                 abrirModalNuevo(){
-                    this.titulo='Nueva Ciudad'
+                    this.titulo='Nueva Politica Division'
                     this.datoLocal.pdv_name=''
-                    this.datoLocal.pdv_locacion=''
                     this.datoLocal.pdv_estado='1'
                     this.btnCrear=true
                     this.btnEditar=false

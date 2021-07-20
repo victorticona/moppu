@@ -10,9 +10,9 @@ class PoliticDivisionSql
     {
 
 
-        $sql = " SELECT pdv_id,pdv_name,pdv_locacion,pdv_estado
+        $sql = " SELECT pdv_id,pdv_name,pdv_estado
         from politic_division
-        ORDER BY politic_division.pdv_name ";
+        ORDER BY politic_division.pdv_id ";
 
         return $sql;
     }
