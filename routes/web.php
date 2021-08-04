@@ -29,7 +29,9 @@ Route::get('/admin', 'AdministradorController@index')->name('admin')->middleware
 //Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/usuario/perfil/{use_id?}', 'UsuarioController@Perfil');
+Route::get('/usuario/direccion/{use_id?}', 'UsuarioController@Direccion');
 Route::resource('/usuario', 'UsuarioController');
+
 
 Route::get('/polidivi/combobox/{pdv_id?}', 'PoliticaDivisionController@comboBox');
 Route::resource('/polidivi', 'PoliticaDivisionController');

@@ -40,9 +40,9 @@
                           @blur="normal"
                           @click="valida"
                         />
-                        <pre v-else class="py-0 pl-0">{{
+                        <p v-else class="py-0 pl-0">{{
                           item.use_username
-                        }}</pre>
+                        }}</p>
                       </div>
                     </div>
                   </div>
@@ -69,7 +69,7 @@
                           @blur="normal"
                           @click="valida"
                         />
-                        <pre v-else class="py-0 pl-0">{{ item.per_name }}</pre>
+                        <p v-else class="py-0 pl-0">{{ item.per_name }}</p>
                       </div>
                     </div>
                   </div>
@@ -96,9 +96,9 @@
                           @blur="normal"
                           @click="valida"
                         />
-                        <pre v-else class="py-0 pl-0">{{
+                        <p v-else class="py-0 pl-0">{{
                           item.per_lastname
-                        }}</pre>
+                        }}</p>
                       </div>
                     </div>
                   </div>
@@ -123,9 +123,9 @@
                           class="form-control"
                           id="per_lastname2"
                         />
-                        <pre v-else class="py-0 pl-0">{{
+                        <p v-else class="py-0 pl-0">{{
                           item.per_lastname2
-                        }}</pre>
+                        }}</p>
                       </div>
                     </div>
                   </div>
@@ -154,7 +154,7 @@
                           @blur="normal"
                           @click="valida"
                         />
-                        <pre v-else class="py-0 pl-0">{{ item.per_ci }}</pre>
+                        <p v-else class="py-0 pl-0">{{ item.per_ci }}</p>
                       </div>
                     </div>
                   </div>
@@ -182,7 +182,7 @@
                           @blur="normal"
                           @click="valida"
                         />
-                        <pre v-else class="py-0 pl-0">{{ item.per_email }}</pre>
+                        <p v-else class="py-0 pl-0">{{ item.per_email }}</p>
                       </div>
                     </div>
                   </div>
@@ -202,16 +202,16 @@
                                                     class="form-control"> -->
                         <b-form-select
                           v-if="btnEditar"
-                          v-model="datoLocal.pdv_id"
+                          v-model="datoLocal.dir_id"
                           :options="options"
-                          id="pdv_id"
+                          id="dir_id"
                           @keyup="valida"
                           @blur="normal"
                           @click="valida"
                         >
                           <option disabled value="">Ciudad</option>
                         </b-form-select>
-                        <pre v-else class="py-0 pl-0">{{ item.pdv_name }}</pre>
+                        <p v-else class="py-0 pl-0">{{ item.dir_name }}</p>
                       </div>
                     </div>
                   </div>
@@ -235,7 +235,7 @@
                           placeholder="Fecha de nacimiento"
                           class="form-control"
                         />
-                        <pre v-else class="py-0 pl-0">{{ item.per_date }}</pre>
+                        <p v-else class="py-0 pl-0">{{ item.per_date }}</p>
                       </div>
                     </div>
                   </div>
@@ -261,7 +261,7 @@
                           class="form-control"
                           id="per_phone"
                         />
-                        <pre v-else class="py-0 pl-0">{{ item.per_phone }}</pre>
+                        <p v-else class="py-0 pl-0">{{ item.per_phone }}</p>
                       </div>
                     </div>
                   </div>
@@ -288,9 +288,9 @@
                           @blur="normal"
                           @click="valida"
                         />
-                        <pre v-else class="py-0 pl-0">{{
+                        <p v-else class="py-0 pl-0">{{
                           item.per_mobile
-                        }}</pre>
+                        }}</p>
                       </div>
                     </div>
                   </div>
@@ -330,12 +330,12 @@
                             </div>
                           </div>
                         </center>
-                        <pre v-else-if="item.per_sex == 1" class="py-0 pl-0">{{
+                        <p v-else-if="item.per_sex == 1" class="py-0 pl-0">{{
                           "Hombre"
-                        }}</pre>
-                        <pre v-else-if="item.per_sex == 0" class="py-0 pl-0">{{
+                        }}</p>
+                        <p v-else-if="item.per_sex == 0" class="py-0 pl-0">{{
                           "Mujer"
-                        }}</pre>
+                        }}</p>
                       </div>
                     </div>
                   </div>
@@ -499,7 +499,7 @@ export default {
         per_email: "",
         per_sex: "",
         use_username: "",
-        pdv_id: "",
+        dir_id: "",
         acc_value: "",
         acc_value2: "",
         acc_value_ant: ""
@@ -645,7 +645,7 @@ export default {
       this.datoLocal.per_email = item.per_email;
       this.datoLocal.per_sex = item.per_sex;
       this.datoLocal.use_username = item.use_username;
-      this.datoLocal.pdv_id = item.pdv_id;
+      this.datoLocal.dir_id = item.dir_id;
       this.datoLocal.acc_value = "";
       this.datoLocal.acc_value2 = "";
       this.datoLocal.acc_value_ant = "";

@@ -62,7 +62,7 @@
                               @blur="normal"
                               @click="valida"
                             />
-                            <pre v-else class="py-0 pl-0">{{ datosDB.dir_name }}</pre>
+                            <p v-else class="py-0 pl-0">{{ datosDB.dir_name }}</p>
                           </div>
                         </div>
                       </div>
@@ -82,13 +82,13 @@
                         <div class="row">
                           <div class="col-sm-12 py-0">
 
-                                <b-form-select v-if="btnEditar" v-model="datosDB.dir_designacion" :options="options"@keyup="valida"
+                                <b-form-select v-if="btnEditar" v-model="datosDB.pdv_id" :options="options" @keyup="valida"
                               @blur="normal"
                               @click="valida"
-                                    id="dir_designacion">
+                                    id="pdv_id">
                                     <option disabled value="">Designacion :</option>
                                 </b-form-select>
-                            <pre v-else class="py-0 pl-0">{{ datosDB.dir_desig }}</pre>
+                            <p v-else class="py-0 pl-0">{{ datosDB.dir_desig }}</p>
                           </div>
                         </div>
                       </div>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="row">
                           <div class="col-sm-12 py-0">
-                            <pre class="py-0 pl-0">{{ datosDB.dir_padre }}</pre>
+                            <p class="py-0 pl-0">{{ datosDB.dir_padre }}</p>
                           </div>
                         </div>
                       </div>
@@ -146,12 +146,12 @@
                         </div>
                         <div class="row">
                           <div class="col-sm-12 py-0">
-                            <pre
+                            <p
                               v-if="datosDB.dir_haschild == 0"
                               class="py-0 pl-0"
-                              >{{ "NO" }}</pre
+                              >{{ "NO" }}</p
                             >
-                            <pre v-else class="py-0 pl-0">{{ "SI" }}</pre>
+                            <p v-else class="py-0 pl-0">{{ "SI" }}</p>
                           </div>
                         </div>
                       </div>
@@ -167,10 +167,10 @@
                         </div>
                         <div class="row">
                           <div class="col-sm-12 py-0">
-                            <pre v-if="datosDB.dir_state == 1" class="py-0 pl-0">{{
+                            <p v-if="datosDB.dir_state == 1" class="py-0 pl-0">{{
                               "Activado"
-                            }}</pre>
-                            <pre v-else class="py-0 pl-0">{{ "Desactivado" }}</pre>
+                            }}</p>
+                            <p v-else class="py-0 pl-0">{{ "Desactivado" }}</p>
                           </div>
                         </div>
                       </div>
@@ -200,7 +200,7 @@
 
 
                 <div class="card-footer">
-                  <div class="row">
+                  <div class="row text-center">
                     <div class="col-sm-6">
                       <button
                         v-if="btnEditar==true && btnCrear==false"
@@ -299,11 +299,11 @@ export default {
       this.items = res.data;
     });
     axios.get('/polidivi/combobox')
-                .then(
-                    res=>{
-                        this.options=res.data
-                    }
-                );
+    .then(
+        res=>{
+            this.options=res.data
+        }
+    );
   },
   methods: {
     direccion(item) {
@@ -314,6 +314,7 @@ export default {
         axios.get(`./direccion/getdireccion/${item.id}`).then(res => {
           this.datosDB = res.data;
         });
+
       }
     },
     valida(e) {
@@ -356,7 +357,7 @@ export default {
       this.titulo = "Nuevo Direccion";
       this.datosDB.dir_name='';
       this.datosDB.dir_state=1;
-      this.datosDB.dir_designacion='';
+      this.datosDB.pdv_id='';
       this.datosDB.dir_father=0;
       this.datoSelect[0]=null;
       this.detalle=true;
@@ -376,9 +377,9 @@ export default {
         $("#dir_name").css("border-color", "#DA3E47");
         return;
       }
-      if (this.datosDB.dir_designacion === "") {
+      if (this.datosDB.pdv_id === "") {
         toastr.warning("llena todos los campos");
-        $("#dir_designacion").css("border-color", "#DA3E47");
+        $("#pdv_id").css("border-color", "#DA3E47");
         return;
       }
       axios.post('./direccion',this.datosDB).then(res => {

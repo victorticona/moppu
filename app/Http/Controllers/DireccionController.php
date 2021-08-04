@@ -136,7 +136,7 @@ class DireccionController extends Controller
         } else {
             $dire['dir_padre'] = "";
         }
-        $poldi = PoliticaDivision::where("pdv_id", "=", $dire["dir_designacion"])->get('pdv_name')->toArray();
+        $poldi = PoliticaDivision::where("pdv_id", "=", $dire["pdv_id"])->get('pdv_name')->toArray();
         $dire['dir_desig'] = $poldi[0]['pdv_name'];
         return json_encode($dire);
     }

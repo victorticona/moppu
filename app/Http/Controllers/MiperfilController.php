@@ -155,7 +155,7 @@ class MiperfilController extends Controller
                                                                 DB::beginTransaction();
                                                                 $per = request()->only([
                                                                     'per_name', 'per_lastname', 'per_lastname2',
-                                                                    'per_ci', 'pdv_id', 'per_date', 'per_phone', 'per_mobile', 'per_email', 'per_sex'
+                                                                    'per_ci', 'dir_id', 'per_date', 'per_phone', 'per_mobile', 'per_email', 'per_sex'
                                                                 ]);
                                                                 $user = request()->only(['use_username']);
                                                                 $users['name'] = $request['use_username'];
