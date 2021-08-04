@@ -82,10 +82,10 @@
                         <div class="row">
                           <div class="col-sm-12 py-0">
 
-                                <b-form-select v-if="btnEditar" v-model="datosDB.dir_designacion" :options="options" @keyup="valida"
+                                <b-form-select v-if="btnEditar" v-model="datosDB.pdv_id" :options="options" @keyup="valida"
                               @blur="normal"
                               @click="valida"
-                                    id="dir_designacion">
+                                    id="pdv_id">
                                     <option disabled value="">Designacion :</option>
                                 </b-form-select>
                             <p v-else class="py-0 pl-0">{{ datosDB.dir_desig }}</p>
@@ -357,7 +357,7 @@ export default {
       this.titulo = "Nuevo Direccion";
       this.datosDB.dir_name='';
       this.datosDB.dir_state=1;
-      this.datosDB.dir_designacion='';
+      this.datosDB.pdv_id='';
       this.datosDB.dir_father=0;
       this.datoSelect[0]=null;
       this.detalle=true;
@@ -377,9 +377,9 @@ export default {
         $("#dir_name").css("border-color", "#DA3E47");
         return;
       }
-      if (this.datosDB.dir_designacion === "") {
+      if (this.datosDB.pdv_id === "") {
         toastr.warning("llena todos los campos");
-        $("#dir_designacion").css("border-color", "#DA3E47");
+        $("#pdv_id").css("border-color", "#DA3E47");
         return;
       }
       axios.post('./direccion',this.datosDB).then(res => {

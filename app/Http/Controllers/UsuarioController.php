@@ -313,8 +313,8 @@ class UsuarioController extends Controller
         $sw = $dir;
         $texto = '';
         while ($dir != 0) {
-            $di = Direccion::select('dir_id', 'dir_name', 'dir_father', 'dir_designacion')->where('dir_id', '=', $dir)->get()->toArray();
-            $pol = PoliticaDivision::select('pdv_name')->where('pdv_id', '=', $di[0]['dir_designacion'])->get()->toArray();
+            $di = Direccion::select('dir_id', 'dir_name', 'dir_father', 'pdv_id')->where('dir_id', '=', $dir)->get()->toArray();
+            $pol = PoliticaDivision::select('pdv_name')->where('pdv_id', '=', $di[0]['pdv_id'])->get()->toArray();
             if ($di[0]['dir_id'] != $sw) {
                 $texto = $pol[0]['pdv_name'] . ": " . $di[0]['dir_name'] . ", " . $texto;
             } else {

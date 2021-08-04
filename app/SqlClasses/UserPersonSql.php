@@ -14,7 +14,7 @@ class UserPersonSql
         p.per_ci,p.dir_id,di.dir_name,pol.pdv_name,p.per_date,p.per_phone,p.per_mobile,p.per_email,
         p.per_sex,u.use_state,p.per_dirdetalle
         from user u,person p,direccion di, access ac, users us,politic_division pol
-        where u.per_id=p.per_id and p.per_is_usuario=1 and p.dir_id=di.dir_id and u.use_id=ac.use_id and u.id=us.id and di.dir_designacion=pol.pdv_id
+        where u.per_id=p.per_id and p.per_is_usuario=1 and p.dir_id=di.dir_id and u.use_id=ac.use_id and u.id=us.id and di.pdv_id=pol.pdv_id
 
         order by p.per_name ";
 

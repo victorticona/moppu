@@ -271,7 +271,7 @@ class Tree
 
         foreach ($data as $v) {
 
-            $desig = PoliticaDivision::where("pdv_id", "=", $v['dir_designacion'])->get()->toArray();
+            $desig = PoliticaDivision::where("pdv_id", "=", $v['pdv_id'])->get()->toArray();
             $desig = $desig[0];
             if ($i == 0) {
                 $str .= '[';
