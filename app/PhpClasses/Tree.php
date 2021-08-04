@@ -275,13 +275,13 @@ class Tree
             $desig = $desig[0];
             if ($i == 0) {
                 $str .= '[';
-                //$str .= '{ "id": 0, "name": "Vicok","locked": true}';
                 $prev = $v;
             }
-            if ($prev[$this->getLevel()] == $v[$this->getLevel()] && $prev[$this->getLevel()] != 0) {
+            if ($prev[$this->getLevel()] == $v[$this->getLevel()] && $i != 0) {
                 $str .= ',';
             } elseif ($prev[$this->getLevel()] > $v[$this->getLevel()]) {
                 $close = $prev[$this->getLevel()] - $v[$this->getLevel()];
+
                 if ($close == 1) $str .= ']},';
                 elseif ($close == 0) {
                     for ($j = 0; $j < $prev[$this->getLevel()]; $j++) {
@@ -316,7 +316,7 @@ class Tree
             }
             $str .= ']';
         }
-        //dd($str);
+
         return $str;
     }
 

@@ -200,7 +200,7 @@
 
 
                 <div class="card-footer">
-                  <div class="row">
+                  <div class="row text-center">
                     <div class="col-sm-6">
                       <button
                         v-if="btnEditar==true && btnCrear==false"
