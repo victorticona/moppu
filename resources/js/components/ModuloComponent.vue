@@ -62,7 +62,7 @@
                               @blur="normal"
                               @click="valida"
                             />
-                            <pre v-else class="py-0 pl-0">{{ datosDB.mod_name }}</pre>
+                            <p v-else class="py-0 pl-0">{{ datosDB.mod_name }}</p>
                           </div>
                         </div>
                       </div>
@@ -1073,7 +1073,7 @@
                         </div>
                         <div class="row">
                           <div class="col-sm-12 py-0">
-                            <pre class="py-0 pl-0">{{ datosDB.mod_tree }}</pre>
+                            <p class="py-0 pl-0">{{ datosDB.mod_tree }}</p>
                           </div>
                         </div>
                       </div>
@@ -1100,7 +1100,7 @@
                               @blur="normal"
                               @click="valida"
                             />
-                            <pre v-else class="py-0 pl-0">{{ datosDB.mod_url }}</pre>
+                            <p v-else class="py-0 pl-0">{{ datosDB.mod_url }}</p>
                           </div>
                         </div>
                       </div>
@@ -1119,10 +1119,10 @@
                         </div>
                         <div class="row">
                           <div class="col-sm-12 py-0">
-                            <pre v-if="datosDB.mod_father == 0" class="py-0 pl-0">{{
+                            <p v-if="datosDB.mod_father == 0" class="py-0 pl-0">{{
                               "NO"
-                            }}</pre>
-                            <pre v-else class="py-0 pl-0">{{ "SI" }}</pre>
+                            }}</p>
+                            <p v-else class="py-0 pl-0">{{ "SI" }}</p>
                           </div>
                         </div>
                       </div>
@@ -1138,7 +1138,7 @@
                         </div>
                         <div class="row">
                           <div class="col-sm-12 py-0">
-                            <pre class="py-0 pl-0">{{ datosDB.mod_padre }}</pre>
+                            <p class="py-0 pl-0">{{ datosDB.mod_padre }}</p>
                           </div>
                         </div>
                       </div>
@@ -1176,12 +1176,12 @@
                         </div>
                         <div class="row">
                           <div class="col-sm-12 py-0">
-                            <pre
+                            <p
                               v-if="datosDB.mod_haschild == 0"
                               class="py-0 pl-0"
-                              >{{ "NO" }}</pre
+                              >{{ "NO" }}</p
                             >
-                            <pre v-else class="py-0 pl-0">{{ "SI" }}</pre>
+                            <p v-else class="py-0 pl-0">{{ "SI" }}</p>
                           </div>
                         </div>
                       </div>
@@ -1197,10 +1197,10 @@
                         </div>
                         <div class="row">
                           <div class="col-sm-12 py-0">
-                            <pre v-if="datosDB.mod_state == 1" class="py-0 pl-0">{{
+                            <p v-if="datosDB.mod_state == 1" class="py-0 pl-0">{{
                               "Activado"
-                            }}</pre>
-                            <pre v-else class="py-0 pl-0">{{ "Desactivado" }}</pre>
+                            }}</p>
+                            <p v-else class="py-0 pl-0">{{ "Desactivado" }}</p>
                           </div>
                         </div>
                       </div>

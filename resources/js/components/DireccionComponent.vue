@@ -62,7 +62,7 @@
                               @blur="normal"
                               @click="valida"
                             />
-                            <pre v-else class="py-0 pl-0">{{ datosDB.dir_name }}</pre>
+                            <p v-else class="py-0 pl-0">{{ datosDB.dir_name }}</p>
                           </div>
                         </div>
                       </div>
@@ -82,13 +82,13 @@
                         <div class="row">
                           <div class="col-sm-12 py-0">
 
-                                <b-form-select v-if="btnEditar" v-model="datosDB.dir_designacion" :options="options"@keyup="valida"
+                                <b-form-select v-if="btnEditar" v-model="datosDB.dir_designacion" :options="options" @keyup="valida"
                               @blur="normal"
                               @click="valida"
                                     id="dir_designacion">
                                     <option disabled value="">Designacion :</option>
                                 </b-form-select>
-                            <pre v-else class="py-0 pl-0">{{ datosDB.dir_desig }}</pre>
+                            <p v-else class="py-0 pl-0">{{ datosDB.dir_desig }}</p>
                           </div>
                         </div>
                       </div>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="row">
                           <div class="col-sm-12 py-0">
-                            <pre class="py-0 pl-0">{{ datosDB.dir_padre }}</pre>
+                            <p class="py-0 pl-0">{{ datosDB.dir_padre }}</p>
                           </div>
                         </div>
                       </div>
@@ -146,12 +146,12 @@
                         </div>
                         <div class="row">
                           <div class="col-sm-12 py-0">
-                            <pre
+                            <p
                               v-if="datosDB.dir_haschild == 0"
                               class="py-0 pl-0"
-                              >{{ "NO" }}</pre
+                              >{{ "NO" }}</p
                             >
-                            <pre v-else class="py-0 pl-0">{{ "SI" }}</pre>
+                            <p v-else class="py-0 pl-0">{{ "SI" }}</p>
                           </div>
                         </div>
                       </div>
@@ -167,10 +167,10 @@
                         </div>
                         <div class="row">
                           <div class="col-sm-12 py-0">
-                            <pre v-if="datosDB.dir_state == 1" class="py-0 pl-0">{{
+                            <p v-if="datosDB.dir_state == 1" class="py-0 pl-0">{{
                               "Activado"
-                            }}</pre>
-                            <pre v-else class="py-0 pl-0">{{ "Desactivado" }}</pre>
+                            }}</p>
+                            <p v-else class="py-0 pl-0">{{ "Desactivado" }}</p>
                           </div>
                         </div>
                       </div>
@@ -299,11 +299,11 @@ export default {
       this.items = res.data;
     });
     axios.get('/polidivi/combobox')
-                .then(
-                    res=>{
-                        this.options=res.data
-                    }
-                );
+    .then(
+        res=>{
+            this.options=res.data
+        }
+    );
   },
   methods: {
     direccion(item) {
@@ -314,6 +314,7 @@ export default {
         axios.get(`./direccion/getdireccion/${item.id}`).then(res => {
           this.datosDB = res.data;
         });
+
       }
     },
     valida(e) {
