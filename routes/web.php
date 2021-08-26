@@ -48,5 +48,5 @@ Route::resource('/modulo', 'ModuloController');
 Route::resource('/miperfil', 'MiperfilController');
 
 
-Route::resource('/direccion', 'direccionController');
+Route::resource('/direccion', 'DireccionController');
 Route::get('/direccion/getdireccion/{dir_id?}', 'DireccionController@getdireccion');
