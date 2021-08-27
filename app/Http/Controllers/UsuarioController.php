@@ -62,8 +62,8 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
 
-        //dd(sizeof($profi));
-
+        //dd(auth()->user()->id);
+        dd(\Carbon\Carbon::now());
 
         if (PersonaController::ciExists($request['per_ci'])) {
             $rest = [
