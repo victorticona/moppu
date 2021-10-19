@@ -17,7 +17,6 @@
                           <th>Paterno</th>
                           <th v-if="btnMostrar==false">Cedula</th>
                           <th v-if="btnMostrar==false">Direccion</th>
-                          <th v-if="btnMostrar==false">Telefono</th>
                           <th v-if="btnMostrar==false">Celular</th>
                       </tr>
                   </thead>
@@ -44,9 +43,6 @@
                           </td>
                           <td v-if="btnMostrar==false">
                               {{item.pdv_name+": "+item.dir_name}}
-                          </td>
-                          <td v-if="btnMostrar==false">
-                              {{item.per_phone}}
                           </td>
                           <td v-if="btnMostrar==false">
                               {{item.per_mobile}}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Access;
 use App\Direccion;
+use App\Registra;
 use App\ModuloProfile;
 use App\ModuloProfileUser;
 use App\Perfil;
@@ -13,6 +14,7 @@ use App\SqlClasses\UserPersonSql;
 use App\User;
 use App\UserPerson;
 use App\Usuario;
+use Illuminate\Support\Carbon;
 use Faker\Provider\ar_JO\Person;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -63,7 +65,7 @@ class UsuarioController extends Controller
     {
 
         //dd(auth()->user()->id);
-        dd(\Carbon\Carbon::now());
+        // dd(\Carbon\Carbon::now());
 
         if (PersonaController::ciExists($request['per_ci'])) {
             $rest = [
@@ -119,6 +121,9 @@ class UsuarioController extends Controller
                         //dd($dataPerson);
                         DB::beginTransaction();
                         try {
+                            
+
+
                             $usersId = User::insertGetId($dataUsers);
                             $perId = Persona::insertGetId($dataPerson);
                             $dataUser['per_id'] = $perId;
@@ -130,6 +135,16 @@ class UsuarioController extends Controller
                             }
                             $dataAccess['use_id'] = $useId;
                             $accId = Access::insertGetId($dataAccess);
+
+                            //regitra que usuario hizo update a que usuario
+                            $aux=Carbon::now()->timezone('America/La_Paz');
+                            $reg['reg_fecha']=$aux->format('Y-m-d');
+                            $reg['reg_hora']=$aux->format('h:i:s');
+                            $reg['id_usr_reg']=session('use_id');
+                            $reg['id_usr_new']=$useId;
+                            Registra::insert($reg);
+
+                            
                             DB::commit();
                         } catch (\Exception $e) {
                             DB::rollBack();
@@ -229,9 +244,15 @@ class UsuarioController extends Controller
                             'id' => 'acc_value'
                         ];
                     } else {
-
                         DB::beginTransaction();
                         try {
+                            //regitra que usuario hizo update a que usuario
+                            $aux=Carbon::now()->timezone('America/La_Paz');
+                            $reg['up_fecha']=$aux->format('Y-m-d');
+                            $reg['up_hora']=$aux->format('h:i:s');
+                            $reg['id_usr_up_reg']=session('use_id');
+                            Registra::where('id_usr_new', '=', $use_id)->update($reg);
+                            
                             if ($request['acc_value'] != '') {
                                 $acc['acc_value'] = Hash::make($request['acc_value']);
                                 $users['password'] = $acc['acc_value'];
@@ -273,9 +294,18 @@ class UsuarioController extends Controller
     {
         //dd($acc_id);
         $use = UserPerson::find($use_id);
+        $persona=Persona::find($use['per_id']);
         $acc = Access::where('use_id', '=', $use_id)->get();
         DB::beginTransaction();
         try {
+            //regitra que usuario hizo update a que usuario
+            $aux=Carbon::now()->timezone('America/La_Paz');
+            $reg['del_fecha']=$aux->format('Y-m-d');
+            $reg['del_hora']=$aux->format('h:i:s');
+            $reg['id_usr_del_reg']=session('use_id');
+            $reg['del_usr']=$persona['per_name']." ".$persona['per_lastname']." ".$persona['per_lastname2']." ".$persona['per_ci']." ".$persona['per_email'];
+            Registra::where('id_usr_new', '=', $use_id)->update($reg);
+
             UserPerson::destroy($use_id);
             Persona::destroy($use['per_id']);
 
