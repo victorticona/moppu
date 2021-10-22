@@ -108,7 +108,12 @@ class UsuarioController extends Controller
                             'per_name', 'per_lastname', 'per_lastname2',
                             'per_ci', 'dir_id', 'per_date', 'per_phone', 'per_mobile', 'per_email', 'per_sex', 'per_dirdetalle'
                         ]);
-                        $dataPerson['per_is_usuario'] = 1;
+                        if(session('per_is_usuario')==1){
+                            $dataPerson['per_is_cliente'] = 1;
+                        }else{
+                            $dataPerson['per_is_usuario'] = 1;
+                        }
+
                         $dataUser = $request->only(['use_username', 'use_state']);
                         $dataAccess = $request->only(['acc_value']);
                         $dataAccess['acc_value'] = Hash::make($dataAccess['acc_value']);
@@ -121,9 +126,6 @@ class UsuarioController extends Controller
                         //dd($dataPerson);
                         DB::beginTransaction();
                         try {
-                            
-
-
                             $usersId = User::insertGetId($dataUsers);
                             $perId = Persona::insertGetId($dataPerson);
                             $dataUser['per_id'] = $perId;
@@ -139,7 +141,7 @@ class UsuarioController extends Controller
                             //regitra que usuario hizo update a que usuario
                             $aux=Carbon::now()->timezone('America/La_Paz');
                             $reg['reg_fecha']=$aux->format('Y-m-d');
-                            $reg['reg_hora']=$aux->format('h:i:s');
+                            $reg['reg_hora']=$aux->toTimeString();
                             $reg['id_usr_reg']=session('use_id');
                             $reg['id_usr_new']=$useId;
                             Registra::insert($reg);
@@ -249,7 +251,8 @@ class UsuarioController extends Controller
                             //regitra que usuario hizo update a que usuario
                             $aux=Carbon::now()->timezone('America/La_Paz');
                             $reg['up_fecha']=$aux->format('Y-m-d');
-                            $reg['up_hora']=$aux->format('h:i:s');
+                            //$reg['up_hora']=$aux->format('h:i:s A');
+                            $reg['up_hora']=$aux->toTimeString();
                             $reg['id_usr_up_reg']=session('use_id');
                             Registra::where('id_usr_new', '=', $use_id)->update($reg);
                             
@@ -301,7 +304,7 @@ class UsuarioController extends Controller
             //regitra que usuario hizo update a que usuario
             $aux=Carbon::now()->timezone('America/La_Paz');
             $reg['del_fecha']=$aux->format('Y-m-d');
-            $reg['del_hora']=$aux->format('h:i:s');
+            $reg['del_hora']=$aux->toTimeString();
             $reg['id_usr_del_reg']=session('use_id');
             $reg['del_usr']=$persona['per_name']." ".$persona['per_lastname']." ".$persona['per_lastname2']." ".$persona['per_ci']." ".$persona['per_email'];
             Registra::where('id_usr_new', '=', $use_id)->update($reg);

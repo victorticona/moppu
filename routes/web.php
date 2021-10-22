@@ -50,3 +50,6 @@ Route::resource('/miperfil', 'MiperfilController');
 
 Route::resource('/direccion', 'DireccionController');
 Route::get('/direccion/getdireccion/{dir_id?}', 'DireccionController@getdireccion');
+
+
+Route::resource('/cliente', 'ClienteController');

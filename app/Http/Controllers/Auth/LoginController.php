@@ -58,6 +58,8 @@ class LoginController extends Controller
             session(['per_id' => $per[0]['per_id']]);
             session(['per_name' => $per[0]['per_name']]);
             session(['per_lastname' => $per[0]['per_lastname']]);
+            session(['per_is_super' => $per[0]['per_is_super']]);
+            session(['per_is_usuario' => $per[0]['per_is_usuario']]);
 
 
             if ($us[0]['use_state'] == 1) {
@@ -74,6 +76,8 @@ class LoginController extends Controller
 
     public function logout()
     {
+        session()->forget('per_is_super');
+        session()->forget('per_is_usuario');
         session()->forget('per_name');
         session()->forget('per_lastname');
         session()->forget('use_id');

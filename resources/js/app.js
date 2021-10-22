@@ -53,6 +53,9 @@ Vue.component('modulo-vico', require('./components/ModuloComponent.vue').default
 //componente para crud de Direcccion
 Vue.component('direccion-vico', require('./components/DireccionComponent.vue').default);
 
+//componente para crud de Cliente
+Vue.component('cliente-vico', require('./components/ClienteComponent.vue').default);
+
 
 const app = new Vue({
   vuetify,
