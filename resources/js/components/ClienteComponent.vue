@@ -293,7 +293,7 @@
                       <div class="row">
                         <div class="col-sm-12 py-0">
                           <b-form-select
-                            v-if="btnEditar"
+                            v-if="btnCrear"
                             v-model="users.pro_id"
                             :options="perfil"
                             id="pro_id"
