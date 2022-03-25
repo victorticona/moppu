@@ -56,6 +56,9 @@ Vue.component('direccion-vico', require('./components/DireccionComponent.vue').d
 //componente para crud de Cliente
 Vue.component('cliente-vico', require('./components/ClienteComponent.vue').default);
 
+//componente para crud de Anuncio
+Vue.component('anuncio-vico', require('./components/AnuncioComponent.vue').default);
+
 
 const app = new Vue({
   vuetify,

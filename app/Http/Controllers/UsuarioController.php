@@ -355,7 +355,6 @@ class UsuarioController extends Controller
             }
             $dir = $di[0]['dir_father'];
         }
-        //dd($texto);
         return $texto;
     }
 }

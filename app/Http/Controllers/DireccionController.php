@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Anuncio;
 use App\Direccion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -140,4 +141,5 @@ class DireccionController extends Controller
         $dire['dir_desig'] = $poldi[0]['pdv_name'];
         return json_encode($dire);
     }
+
 }

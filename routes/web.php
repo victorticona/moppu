@@ -53,3 +53,10 @@ Route::get('/direccion/getdireccion/{dir_id?}', 'DireccionController@getdireccio
 
 
 Route::resource('/cliente', 'ClienteController');
+
+
+Route::resource('/anuncio', 'AnuncioController');
+Route::get('/anuncio/combobox/{pol_id?}', 'AnuncioController@comboBox');
+Route::get('/anuncio/direccion/{pol_id?}', 'AnuncioController@direccion');
+Route::get('/anuncio/mypedido/{pol_id?}', 'AnuncioController@MyPedido');
+
